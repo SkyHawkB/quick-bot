@@ -44,7 +44,19 @@ class Bot {
   constructor(options = {}) {
     this.client = new Discord.Client();
     this.commands = [];
+    this.prefix = null;
     this.config = null;
+  }
+
+  /**
+   * Set the bot's prefix.
+   *
+   * @param {string} prefix
+   */
+  setPrefix(prefix) {
+    this.prefix = prefix;
+
+    return this;
   }
 
   /**
@@ -91,6 +103,10 @@ class Bot {
    * @param {string} token - The client's token.
    */
   build(token) {
+    if(this.prefix === null) {
+      throw new Error('You must set the bot\'s prefix!');
+    }
+
     this.client.on('message', (message) => {
       logger.debug('Message recieved!');
     });
