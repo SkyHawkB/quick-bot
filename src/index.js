@@ -32,6 +32,8 @@ class Command {
     } else {
       throw new TypeError(`Expected "onRun" to be a Function!`);
     }
+
+    return this;
   }
 }
 
