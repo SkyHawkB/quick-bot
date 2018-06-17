@@ -1,6 +1,6 @@
 {
   "name": "quick-bot",
-  "version": "0.5.0",
+  "version": "0.5.1",
   "description": "A Discord bot framework with some utilities included.",
   "main": "src/index.js",
   "scripts": {},
