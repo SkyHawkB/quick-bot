@@ -53,6 +53,8 @@ class Bot {
    */
   on(eventName, callback) {
     this.client.on(eventName, listener);
+
+    return this;
   }
 
   /**
@@ -62,6 +64,8 @@ class Bot {
    */
   setConfig(config) {
     this.config = config;
+
+    return this;
   }
 
   /**
@@ -75,6 +79,8 @@ class Bot {
     } else {
       throw new TypeError(`Expected "command" to be a Command!`);
     }
+
+    return this;
   }
 
   /**
@@ -87,8 +93,9 @@ class Bot {
       logger.debug('Message recieved!');
     });
 
-    this.client.login(token);
-    logger.success(`Connected to Discord!`);
+    this.client.login(token).then(() => {
+      logger.success(`Connected to Discord!`);
+    });
   }
 }
 
