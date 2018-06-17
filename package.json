@@ -10,6 +10,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "discord.js": "github:discordjs/discord.js",
     "sky-logger": "^1.1.0"
   }
 }
