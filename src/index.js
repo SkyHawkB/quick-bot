@@ -3,16 +3,6 @@ const logger = require('sky-logger');
 
 class Command {
   /**
-   * @param {string} name - The command's name.
-   */
-  constructor(name) {
-    this.name = name;
-    this.run = () =>  {
-      logger.info(`No run function specified for the "${this.name}" command.`);
-    };
-  }
-
-  /**
    * The callback for bot commands.
    *
    * @callback Command~RunFunction
@@ -22,18 +12,16 @@ class Command {
    */
 
   /**
-   * Set the function to execute when this command is run.
-   *
-   * @param {Command~RunFunction} callback - The function to run.
+   * @param {string} name - The command's name.
+   * @param {Command~RunFunction} run - The function to execute when this command is run.
    */
-  onRun(callback) {
-    if(typeof callback == 'function') {
-      this.run = callback;
+  constructor(name, run) {
+    this.name = name;
+    if(typeof run == 'function') {
+      this.run = run;
     } else {
-      throw new TypeError(`Expected "onRun" to be a Function!`);
+      throw new TypeError(`Expected "run" to be a Function!`);
     }
-
-    return this;
   }
 }
 
