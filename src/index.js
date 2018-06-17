@@ -45,6 +45,7 @@ class Bot {
     this.client = new Discord.Client();
     this.commands = [];
     this.prefix = null;
+    this.allowDMs = false;
     this.config = null;
   }
 
@@ -57,6 +58,13 @@ class Bot {
     this.prefix = prefix;
 
     return this;
+  }
+
+  /**
+   * Enable commands in DMs.
+   */
+  allowDMs() {
+    this.allowDMs = true;
   }
 
   /**
@@ -108,7 +116,17 @@ class Bot {
     }
 
     this.client.on('message', (message) => {
-      logger.debug('Message recieved!');
+      if(!message.guild && !this.allowDMs) return; /* No messages in DMs unless explicitly allowed. */
+      if(message.author.bot) return; /* The bot will not respond to other bots. */
+      if(!message.content.startsWith(this.prefix)) return; /* The message must begin with the bot's prefix. */
+
+      const commandName = message.content.slice(this.prefix.length).trim().split(/ +/g).shift().toLowerCase();
+
+      for(let i in this.commands) {
+        if(this.commands[i].name === commandName) {
+          this.commands[i].run(this.client, message, this.config);
+        }
+      }
     });
 
     this.client.login(token).then(() => {
