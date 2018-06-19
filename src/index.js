@@ -122,6 +122,6 @@ class Bot {
     });
   }
 }
+Bot.Command = Command;
 
-module.exports.Bot = Bot;
-module.exports.Command = Command;
+module.exports = Bot;
