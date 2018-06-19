@@ -6,19 +6,19 @@ class Command {
    * The callback for bot commands.
    *
    * @callback Command~RunFunction
-   * @param {Client} client
-   * @param {Message} message
-   * @param {Object} config
+   * @param {Client} client - The bot's client.
+   * @param {Message} message - The message activating the command.
+   * @param {Object} config - The bot's config.
    */
 
   /**
    * @param {string} name - The command's name.
-   * @param {Command~RunFunction} run - The function to execute when this command is run.
+   * @param {Command~RunFunction} onRun - The function to execute when this command is run.
    */
-  constructor(name, run) {
+  constructor(name, onRun) {
     this.name = name;
     if(typeof run == 'function') {
-      this.run = run;
+      this.run = onRun;
     } else {
       throw new TypeError(`Expected "run" to be a Function!`);
     }
@@ -40,7 +40,7 @@ class Bot {
   /**
    * Set the bot's prefix.
    *
-   * @param {string} prefix
+   * @param {string} prefix - The new prefix.
    */
   setPrefix(prefix) {
     this.prefix = prefix;
