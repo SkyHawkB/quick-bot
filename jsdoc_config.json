@@ -1,6 +1,6 @@
 {
     "source": {
-      "exclude": "./src/test.js"
+      "exclude": ["./src/test.js"]
     },
     "opts": {
         "destination": "./docs/"
