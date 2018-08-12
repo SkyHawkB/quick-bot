@@ -1,29 +1,11 @@
 const Discord = require('discord.js');
 const logger = require('sky-logger');
 
-class Command {
-  /**
-   * The callback for bot commands.
-   *
-   * @callback Command~RunFunction
-   * @param {Client} client - The bot's client.
-   * @param {Message} message - The message activating the command.
-   * @param {Object} config - The bot's config.
-   */
-
-  /**
-   * @param {string} name - The command's name.
-   * @param {Command~RunFunction} onRun - The function to execute when this command is run.
-   */
-  constructor(name, onRun) {
-    this.name = name;
-    if(typeof run == 'function') {
-      this.run = onRun;
-    } else {
-      throw new TypeError(`Expected "run" to be a Function!`);
-    }
-  }
-}
+/**
+ * The Discord.JS client options object type.
+ * @external ClientOptions
+ * @see {@link https://discord.js.org/#/docs/main/master/typedef/ClientOptions|Discord.JS Documentation}
+ */
 
 class Bot {
   /**
@@ -119,9 +101,35 @@ class Bot {
 
     this.client.login(token).then(() => {
       logger.success(`Connected to Discord!`);
+    }).catch((e) => {
+      logger.error('Failed to log in to Discord:')
+      logger.error('  ' + e.message);
     });
   }
 }
-Bot.Command = Command;
+class Command {
+  /**
+   * The callback for bot commands.
+   *
+   * @callback Command~RunFunction
+   * @param {Client} client - The bot's client.
+   * @param {Message} message - The message activating the command.
+   * @param {Object} config - The bot's config.
+   */
 
-module.exports = Bot;
+  /**
+   * @param {string} name - The command's name.
+   * @param {Command~RunFunction} onRun - The function to execute when this command is run.
+   */
+  constructor(name, onRun) {
+    this.name = name;
+    if(typeof onRun === 'function') {
+      this.run = onRun;
+    } else {
+      throw new TypeError(`Expected "run" to be a Function!`);
+    }
+  }
+}
+
+module.exports.Bot = Bot;
+module.exports.Command = Command;
