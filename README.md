@@ -15,16 +15,14 @@ yarn add quick-bot
 ## Usage
 
 ```js
-const Bot = require('quick-bot');
-
-const ping = new Bot.Command('ping', (client, message, config) => {
-  message.channel.send('Pong!');
-});
+const {Bot, Command} = require('quick-bot');
 
 const bot = new Bot()
   .setPrefix('!')
-  .addCommand(ping)
-  .build('my_super_secret_token');
+  .addCommand(new Command('ping', (client, message, config) => {
+    message.channel.send('Pong!');
+  }))
+  .build(process.argv[2]);
 ```
 
 Will make a bot that responds to `!ping` with `Pong!`. Easy!
