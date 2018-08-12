@@ -4,7 +4,7 @@
   "description": "A Discord bot framework with some utilities included.",
   "main": "src/index.js",
   "scripts": {
-    "doc": "jsdoc src -c jsdoc_config.json -R README.md -P package.json"
+    "doc": "jsdoc src -c jsdoc_config.json -R README.md"
   },
   "keywords": [
     "discord"
