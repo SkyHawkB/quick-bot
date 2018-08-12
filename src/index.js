@@ -1,5 +1,6 @@
 const Discord = require('discord.js');
 const logger = require('sky-logger');
+const util = require('./util.js');
 
 /**
  * The Discord.JS client options object type.
@@ -133,3 +134,5 @@ class Command {
 
 module.exports.Bot = Bot;
 module.exports.Command = Command;
+module.exports.Logger = logger;
+module.exports.Util = util;
