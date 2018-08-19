@@ -2,6 +2,7 @@
  * @external Collection
  * @see {@link https://discord.js.org/#/docs/main/master/class/Collection|Discord.JS Documentation}
  */
+
 /**
  * Iterate over a {@link https://discord.js.org/#/docs/main/master/class/Collection|Discord.JS Collection},
  * calling a callback for each value in the collection.
