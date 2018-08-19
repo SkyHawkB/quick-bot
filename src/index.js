@@ -24,7 +24,7 @@ class Bot extends Discord.Client {
   constructor(prefix, config, allowDMs = false, options = {}) {
     super(options);
 
-    this.commands = new Map();
+    this.commands = new Discord.Collection();
     this.prefix = prefix;
     this.allowDMs = allowDMs;
     this.config = config;
