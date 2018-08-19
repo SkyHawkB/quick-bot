@@ -15,14 +15,13 @@ yarn add quick-bot
 ## Usage
 
 ```js
-const {Bot, Command} = require('quick-bot');
+const {Bot} = require('quick-bot');
 
-const bot = new Bot()
-  .setPrefix('!')
-  .addCommand(new Command('ping', (client, message, config) => {
+const client = new Bot('!', {})
+  .addCommand('ping', (client, message, config) => {
     message.channel.send('Pong!');
-  }))
-  .build(process.argv[2]);
+  })
+  .build('TOKEN HERE');
 ```
 
 Will make a bot that responds to `!ping` with `Pong!`. Easy!
