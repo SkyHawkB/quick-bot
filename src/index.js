@@ -68,12 +68,21 @@ class Bot extends Discord.Client {
       }
     });
 
-    this.login(token).then(() => {
-      logger.success(`Connected to Discord!`);
-    }).catch((e) => {
-      logger.error('Failed to log in to Discord:')
-      logger.error('  ' + e.message);
-      process.exit(1);
+    return this;
+  }
+
+  login(token) {
+    return new Promise((resolve, reject) => {
+      super.login(token).then(() => {
+        logger.success(`Connected to Discord!`);
+
+        resolve(token);
+      }).catch(error => {
+        logger.error('Failed to log in to Discord:')
+        logger.error('  ' + e.message);
+        
+        reject(error);
+      });
     });
   }
 }

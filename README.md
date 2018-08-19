@@ -21,7 +21,8 @@ const client = new Bot('!', {})
   .addCommand('ping', (client, message, config) => {
     message.channel.send('Pong!');
   })
-  .build('TOKEN HERE');
+  .build()
+  .login('TOKEN HERE');
 ```
 
 Will make a bot that responds to `!ping` with `Pong!`. Easy!
