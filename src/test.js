@@ -6,4 +6,4 @@ const bot = new Bot('!', {})
     message.channel.send('Pong!');
   })
   .build()
-  .login(process.argv[2]);
+  .login();
