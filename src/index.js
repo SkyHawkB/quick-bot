@@ -31,6 +31,18 @@ class Bot extends Discord.Client {
   }
 
   /**
+   * Add an event listener to the bot.
+   *
+   * @param {string} eventName - The name of the event.
+   * @param {Function} listener - The callback function.
+   */
+  on(eventName, listener) {
+    super.on(eventName, listener);
+
+    return this;
+  }
+
+  /**
    * Add a command to the bot's message handler.
    *
    * @param {Command} command - The command to add.
@@ -80,7 +92,7 @@ class Bot extends Discord.Client {
       }).catch(error => {
         logger.error('Failed to log in to Discord:')
         logger.error('  ' + e.message);
-        
+
         reject(error);
       });
     });
